@@ -1,8 +1,9 @@
-version: "3.8"
+version: "3"
 
 services: 
   postgres:
     image: postgres:${POSTGRES_VERSION}
+    container_name: compose_cl_postgres
     ports:
       - 5432:5432
     env_file: 
@@ -12,10 +13,15 @@ services:
 
   chainlink:
     build: .
+    container_name: compose_chainlink
+    #user: chainlink:14933
     env_file:
       - .env
-    command: local node -p /chainlink/.password -a /chainlink/.api
-    restart: on-failure
+    command: local node -p /home/chainlink/.password -a /home/chainlink/.api
+    #command: "-f /dev/null"
+    #entrypoint: /usr/bin/tail
+    #tty: true
+    #restart: on-failure
     ports: 
       - 6688:6688
     links:
@@ -23,8 +29,7 @@ services:
     depends_on: 
       - postgres
     volumes:
-      - chainlink_data:/chainlink
+      - ./chainlink_data:/home/chainlink
 
 volumes: 
   db-data:
-  chainlink_data:

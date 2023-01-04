@@ -1,13 +1,14 @@
-FROM smartcontract/chainlink:$CHAINLINK_VERSION
+FROM smartcontract/chainlink:1.11.0-root
 
 # Create the chainlink node root path
-RUN mkdir /chainlink
+RUN mkdir /home/chainlink
 
-ENV API_USER_EMAIL=$API_USER_EMAIL
-ENV API_USER_PASSWORD=$API_USER_PASSWORD
-ENV WALLET_PASSWORD=$WALLET_PASSWORD
+ENV API_USER_EMAIL $API_USER_EMAIL
+ENV API_USER_PASSWORD $API_USER_PASSWORD
+ENV WALLET_PASSWORD $WALLET_PASSWORD
 
-# Create chainlink node required values to initialize with
-RUN echo $API_USER_EMAIL > /chainlink/.api
-RUN echo $API_USER_PASSWORD >> /chainlink/.api
-RUN echo $WALLET_PASSWORD > /chainlink/.password
+# Create chainlink node required values to initioalize with
+RUN echo $API_USER_EMAIL > /home/chainlink/.api
+RUN echo $API_USER_PASSWORD >> /home/chainlink/.api
+RUN echo $WALLET_PASSWORD > /home/chainlink/.password
+RUN echo "TESTING" > /home/chainlink/test
