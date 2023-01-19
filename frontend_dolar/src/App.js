@@ -53,15 +53,33 @@ function App() {
     if (!price) {
       getPrice();
     }
+    const { ethereum } = window;
+    if (ethereum) {
+      //const provider = new ethers.providers.Web3Provider(ethereum);
+      ethereum.on("chainChanged", (newNetwork, oldNetwork) => {
+        if(newNetwork != '0x5'){
+          switchNetwork(ethereum);
+        }
+      });
+    }
+
+    async function switchNetwork(ethereum){
+      await ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x5' }], // chainId must be in hexadecimal numbers
+      });
+    }
   }, []);
 
 
   return (
     <div className="App">
       <header className="App-header">
+        <small>This is a demo purpose</small>
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
         <p>Dollar blue price : { (parseInt(price.toString()) / 100).toFixed(2)  }</p>
         <p>Date : { new Date(parseInt(lasttimestamp.toString()) * 1000).toString()   }</p>
+        <small>The data comes 1 hour each</small>
       </header>
     </div>
   );
