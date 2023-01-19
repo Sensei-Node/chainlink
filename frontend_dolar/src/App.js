@@ -79,12 +79,12 @@ function App() {
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
         <table>
           <tr>
-          <td style="width:100">Dollar blue price </td>
-          <td style="width:100">Eth usd price </td>
+            <td>Dollar blue price </td>
+            <td>Eth usd price </td>
           </tr>
           <tr>
-          <td> { (parseInt(price.toString()) / 100).toFixed(2)  }</td>
-          <td> n/a</td>
+            <td> { (parseInt(price.toString()) / 100).toFixed(2)  }</td>
+            <td> </td>
           </tr>
         </table>
         <p>Date : { new Date(parseInt(lasttimestamp.toString()) * 1000).toString()   }</p>
