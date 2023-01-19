@@ -16,20 +16,34 @@ function App() {
       try {
         const { ethereum } = window;
         if (ethereum) {
-          const provider = new ethers.providers.
-          
-          Web3Provider(ethereum);
-          const signer = provider.getSigner();
-          const contract = new ethers.Contract(
-            process.env.REACT_APP_CONTRACT_ADDRESS,
-            abi,
-            provider
-          );
-          const _price = await contract.currentPrice()
-          setPrice(_price)
-          const lastTimestamp = await contract.lastTimeStamp() 
-          setLasttimestamp(lastTimestamp)
-          
+          try {
+            await ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0x5' }], // chainId must be in hexadecimal numbers
+            });
+            if(ethereum.chainId != "0x5"){
+              window.location.reload(false);
+            }
+          } catch (error) {
+            console.error(error)
+          }
+          const provider = new ethers.providers.Web3Provider(ethereum);
+          if(ethereum.chainId == "0x5" || ethereum.chainId == "0x05"){
+            const signer = provider.getSigner();
+            const contract = new ethers.Contract(
+              process.env.REACT_APP_CONTRACT_ADDRESS,
+              abi,
+              provider
+            );
+            const _price = await contract.currentPrice()
+            setPrice(_price)
+            const lastTimestamp = await contract.lastTimeStamp() 
+            setLasttimestamp(lastTimestamp)
+          }else{
+            console.log("Need chain 5, has %o",ethereum.chainId) 
+          } 
+        }else{
+          alert('MetaMask is not installed. Please consider installing it: https://metamask.io/download.html');
         }
       } catch (error) {
         console.log("error", error);
