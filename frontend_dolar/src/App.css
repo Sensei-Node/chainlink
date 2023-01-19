@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.linkfooter{
+  color:black;
+  font-size: small;
+}
+
 .tablePrice{
   width: 50%;
 }

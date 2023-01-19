@@ -103,9 +103,10 @@ function App() {
         </table>
         <p>Date : { new Date(parseInt(lasttimestampDolar.toString()) * 1000).toString()   }</p>
         
-       <a href="https://github.com/Sensei-Node/chainlink">Github</a>
-       <a href="https://goerli.etherscan.io/address/0xe2906800Ad5FB3df2FB25dc7bCCC4ABc3fa05910">Client contract</a>
-       <a href="https://goerli.etherscan.io/address/0x17899bA594F1bdf789c29ce145158A8Be642b9dD">Oracle Contract</a>
+       <a className="linkfooter" href="https://github.com/Sensei-Node/chainlink">Github</a>
+       <a className="linkfooter" href="https://goerli.etherscan.io/address/0xe2906800Ad5FB3df2FB25dc7bCCC4ABc3fa05910">Client contract Dolar</a>
+       <a className="linkfooter" href="https://goerli.etherscan.io/address/0xB00D88867825ADb50aa4E4A85925E6ACca307Aba">Client contract Eth</a>
+       <a className="linkfooter" href="https://goerli.etherscan.io/address/0x17899bA594F1bdf789c29ce145158A8Be642b9dD">Oracle Contract</a>
       </header>
     </div>
   );
