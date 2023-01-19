@@ -2,17 +2,19 @@ import logo from './logo.svg';
 import './App.css';
 import { ethers } from "ethers";
 import abi from "./abi.json";
+import abieth from "./abieth.json";
 import React, { useState, useEffect } from 'react';
 
 function App() {
   
-  let [price, setPrice] = useState('');
-  let [lasttimestamp, setLasttimestamp] = useState('');
+  let [priceDolar, setPriceDolar] = useState('');
+  let [priceEth, setPriceEth] = useState('');
+  let [lasttimestampDolar, setLasttimestampDolar] = useState('');
+  let [lasttimestampEth, setLasttimestampEth] = useState('');
 
   useEffect(() => {
     console.log("running...")
     async function getPrice() {
-      console.log("Contract %o, %o", process.env.REACT_APP_CONTRACT_ADDRESS, process.env.NODE_ENV)
       try {
         const { ethereum } = window;
         if (ethereum) {
@@ -30,15 +32,27 @@ function App() {
           const provider = new ethers.providers.Web3Provider(ethereum);
           if(ethereum.chainId == "0x5" || ethereum.chainId == "0x05"){
             const signer = provider.getSigner();
-            const contract = new ethers.Contract(
+            // Dolar
+            const contractDolar = new ethers.Contract(
               process.env.REACT_APP_CONTRACT_ADDRESS,
               abi,
               provider
             );
-            const _price = await contract.currentPrice()
-            setPrice(_price)
-            const lastTimestamp = await contract.lastTimeStamp() 
-            setLasttimestamp(lastTimestamp)
+            const _priceDolar = await contractDolar.currentPrice()
+            setPriceDolar(_priceDolar)
+            const lastTimestampDolar = await contractDolar.lastTimeStamp() 
+            setLasttimestampDolar(lastTimestampDolar)
+
+            // Eth
+            const contractEth = new ethers.Contract(
+              process.env.REACT_APP_CONTRACT_ADDRESS_ETH,
+              abieth,
+              provider
+            );
+            const _priceEth = await contractEth.currentPrice()
+            setPriceEth(_priceEth)
+            const lastTimestampEth = await contractETH.lastTimeStamp() 
+            setLasttimestampEthb(lastTimestampEth)
           }else{
             console.log("Need chain 5, has %o",ethereum.chainId) 
           } 
@@ -50,7 +64,7 @@ function App() {
       }
     }
 
-    if (!price) {
+    if (!priceDolar) {
       getPrice();
     }
     const { ethereum } = window;
@@ -77,17 +91,17 @@ function App() {
       <header className="App-header">
         <small>For demo purpouses only (Updated hourly)</small>
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
-        <table>
+        <table className="tablePrice">
           <tr>
-            <td>Dollar blue price </td>
+            <td >Dollar blue price </td>
             <td>Eth usd price </td>
           </tr>
           <tr>
-            <td> { (parseInt(price.toString()) / 100).toFixed(2)  }</td>
-            <td> </td>
+            <td> { (parseInt(priceDolar.toString()) / 100).toFixed(2)  }</td>
+            <td> { (parseInt(priceEth.toString()) / 100).toFixed(2)  }</td>
           </tr>
         </table>
-        <p>Date : { new Date(parseInt(lasttimestamp.toString()) * 1000).toString()   }</p>
+        <p>Date : { new Date(parseInt(lasttimestampDolar.toString()) * 1000).toString()   }</p>
         
        <a href="https://github.com/Sensei-Node/chainlink">Github</a>
        <a href="https://goerli.etherscan.io/address/0xe2906800Ad5FB3df2FB25dc7bCCC4ABc3fa05910">Client contract</a>
