@@ -7,23 +7,29 @@ import React, { useState, useEffect } from 'react';
 function App() {
   
   let [price, setPrice] = useState('');
+  let [lasttimestamp, setLasttimestamp] = useState('');
 
   useEffect(() => {
     console.log("running...")
     async function getPrice() {
-      const CONTRACT_ADDRESS = "0xd6C53d501e160851f061984576cd5364046a8c88";
+      console.log("Contract %o, %o", process.env.REACT_APP_CONTRACT_ADDRESS, process.env.NODE_ENV)
       try {
         const { ethereum } = window;
         if (ethereum) {
-          const provider = new ethers.providers.Web3Provider(ethereum);
+          const provider = new ethers.providers.
+          
+          Web3Provider(ethereum);
           const signer = provider.getSigner();
           const contract = new ethers.Contract(
-            CONTRACT_ADDRESS,
+            process.env.REACT_APP_CONTRACT_ADDRESS,
             abi,
             provider
           );
-          const _price = await contract.currentPrice() 
+          const _price = await contract.currentPrice()
           setPrice(_price)
+          const lastTimestamp = await contract.lastTimeStamp() 
+          setLasttimestamp(lastTimestamp)
+          
         }
       } catch (error) {
         console.log("error", error);
@@ -40,10 +46,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
-        <p>Dolar price : { (parseInt(price.toString()) / 100).toFixed(2)  }</p>
-        {/* <img src={"https://uploads-ssl.webflow.com/62c45e4db6125c609200cf9e/634ed27ccdb39d3e1f197970_Mapa_Nodos.png"} className="App-logo" alt="logo" /> */}
-        
-         
+        <p>Dollar blue price : { (parseInt(price.toString()) / 100).toFixed(2)  }</p>
+        <p>Date : { new Date(parseInt(lasttimestamp.toString()) * 1000).toString()   }</p>
         
       </header>
     </div>
