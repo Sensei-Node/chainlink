@@ -5,6 +5,7 @@ LABEL "Description"="frontend dollar"
 LABEL "version"="1.0.0"
 
 ENV NODE_ENV=production
+ENV REACT_APP_CONTRACT_ADDRESS="0xe2906800Ad5FB3df2FB25dc7bCCC4ABc3fa05910"
 USER root
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html

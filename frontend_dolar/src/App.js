@@ -48,7 +48,6 @@ function App() {
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
         <p>Dollar blue price : { (parseInt(price.toString()) / 100).toFixed(2)  }</p>
         <p>Date : { new Date(parseInt(lasttimestamp.toString()) * 1000).toString()   }</p>
-        
       </header>
     </div>
   );
