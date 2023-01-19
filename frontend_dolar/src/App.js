@@ -75,11 +75,23 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <small>This is a demo purpose</small>
+        <small>For demo purpouses only (Updated hourly)</small>
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
-        <p>Dollar blue price : { (parseInt(price.toString()) / 100).toFixed(2)  }</p>
+        <table>
+          <tr>
+          <td style="width:100">Dollar blue price </td>
+          <td style="width:100">Eth usd price </td>
+          </tr>
+          <tr>
+          <td> { (parseInt(price.toString()) / 100).toFixed(2)  }</td>
+          <td> n/a</td>
+          </tr>
+        </table>
         <p>Date : { new Date(parseInt(lasttimestamp.toString()) * 1000).toString()   }</p>
-        <small>The data comes 1 hour each</small>
+        
+       <a href="https://github.com/Sensei-Node/chainlink">Github</a>
+       <a href="https://goerli.etherscan.io/address/0xe2906800Ad5FB3df2FB25dc7bCCC4ABc3fa05910">Client contract</a>
+       <a href="https://goerli.etherscan.io/address/0x17899bA594F1bdf789c29ce145158A8Be642b9dD">Oracle Contract</a>
       </header>
     </div>
   );
