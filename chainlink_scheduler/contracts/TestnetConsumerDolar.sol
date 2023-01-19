@@ -14,7 +14,8 @@ contract TestnetConsumerDolar is ChainlinkClient, ConfirmedOwner {
 
     uint256 private constant ORACLE_PAYMENT = (1 * LINK_DIVISIBILITY) / 10; // 0.1 * 10**18
     uint256 public currentPrice;
-    
+    uint public lastTimeStamp;
+
     event RequestDolarBluePriceFulfilled(
         bytes32 indexed requestId,
         uint256 indexed price
@@ -33,6 +34,7 @@ contract TestnetConsumerDolar is ChainlinkClient, ConfirmedOwner {
         address _oracle,
         string memory _jobId
     ) public onlyOwner {
+        lastTimeStamp = block.timestamp;
         Chainlink.Request memory req = buildChainlinkRequest(
             stringToBytes32(_jobId),
             address(this),

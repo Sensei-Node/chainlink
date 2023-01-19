@@ -1,6 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomicfoundation/hardhat-toolbox");
 require('dotenv').config({ path: require('find-config')('.env') })
-//import "./tasks/sampleTask";
 
 task("requestDolar", "Prints an account's balance")
   .addParam("clientAddress", "The client contract's address. Ex.goerli. 0xd6C53d501e160851f061984576cd5364046a8c88")
