@@ -25,7 +25,7 @@ task("requestDolar", "Prints an account's balance")
   .setAction(async (taskArgs, hre) => {
     try{
       const clContract = await hre.ethers.getContractAt("TestnetConsumerEth", taskArgs.clientAddress);
-      await clContract.requestDolarBluePrice(taskArgs.operatorAddress, taskArgs.jobId);
+      await clContract.requestETHUSD(taskArgs.operatorAddress, taskArgs.jobId);
       console.log(
         `The request Eth Price was called`
       );  

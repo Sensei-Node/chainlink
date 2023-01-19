@@ -34,7 +34,7 @@ function App() {
             const signer = provider.getSigner();
             // Dolar
             const contractDolar = new ethers.Contract(
-              process.env.REACT_APP_CONTRACT_ADDRESS,
+              process.env.REACT_APP_CONTRACT_ADDRESS_DOLAR,
               abi,
               provider
             );
