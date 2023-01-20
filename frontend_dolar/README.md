@@ -34,3 +34,22 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+
+## Funding contracts
+
+You have to fund the following contracts with [LINK](https://docs.chain.link/resources/link-token-contracts/):
+
+### LINK 
+
+- Clients contract
+- Operator just minimum (0.5)
+- Node address
+
+### Goerli 
+
+- Owner (the address who deplpoy the contract) to call the clients
+- Node address (The node address is calling when a request is fullfilled)
+
+**The operator address receives the fees in LINK from every request**
+
+
