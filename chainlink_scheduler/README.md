@@ -1,6 +1,6 @@
-# Sample Hardhat Project
+# Scheduler Chainlink
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This hardhat project is to call the chainlink oracle to get the dolar(blue - Argentina) and ether price in usd. 
 
 
 ## Environment 
@@ -10,9 +10,19 @@ cp env.default .env
 ```
 
 And set all the variables
+```env
+GOERLI_RPC=<url goerli client>
+ACCOUNT_PK_GOERLI=<deployer private key >
+CL_CLIENT_ADDRESS_DOLAR=<address of the dolar client>
+CL_OPERATOR_ADDRESS_DOLAR=<operator address>
+CL_JOB_ID_DOLAR=<external job id, comes from the node. You can do it in the operator chainlink dashboars>
+LOG_FILE_DOLAR=/var/log/<file>.log
 
-
-Try running some of the following tasks:
+CL_CLIENT_ADDRESS_ETH=<idem eth>
+CL_OPERATOR_ADDRESS_ETH=<idem eth could be the same as the dolar>
+CL_JOB_ID_ETH=<idem eth>
+LOG_FILE_ETH=/var/log/<file>.log
+``` 
 
 ## compile the contract
 
