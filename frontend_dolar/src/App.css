@@ -8,8 +8,9 @@
 }
 
 .linkfooter{
-  color:black;
+  color:rgb(63,90,203);;
   font-size: small;
+  text-decoration: none;
 }
 
 .tablePrice{
@@ -23,18 +24,19 @@
 }
 
 .App-header {
-  background-color: #2015ff;
+  background-color: rgb(245,247,252);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(63,90,203);
+  text-decoration: none;
 }
 
 .App-link {
-  color: #61dafb;
+  color: rgb(63,90,203);
 }
 
 @keyframes App-logo-spin {
