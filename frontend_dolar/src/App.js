@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { ethers } from "ethers";
 import abi from "./abi.json";
