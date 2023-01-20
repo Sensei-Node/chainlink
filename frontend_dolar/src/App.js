@@ -101,7 +101,8 @@ function App() {
             <td> { (parseInt(priceEth.toString()) / 100).toFixed(2)  }</td>
           </tr>
         </table>
-        <p>Date : { new Date(parseInt(lasttimestampDolar.toString()) * 1000).toString()   }</p>
+        <p>Date Dolar : { new Date(parseInt(lasttimestampDolar.toString()) * 1000).toString()   }</p>
+        <p>Date Eth   : { new Date(parseInt(lastTimestampEth.toString()) * 1000).toString()   }</p>
         
        <a className="linkfooter" href="https://github.com/Sensei-Node/chainlink">Github</a>
        <a className="linkfooter" href="https://goerli.etherscan.io/address/0xe2906800Ad5FB3df2FB25dc7bCCC4ABc3fa05910">Client contract Dolar</a>
