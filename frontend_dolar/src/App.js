@@ -50,8 +50,9 @@ function App() {
             );
             const _priceEth = await contractEth.currentPrice()
             setPriceEth(_priceEth)
-            const lastTimestampEth = await contractETH.lastTimeStamp() 
-            setLasttimestampEthb(lastTimestampEth)
+            const lastTimestampEth = await contractEth.lastTimeStamp() 
+            setLasttimestampEth(lastTimestampEth)
+            console.log("ETH" +lastTimestampEth)
           }else{
             console.log("Need chain 5, has %o",ethereum.chainId) 
           } 
@@ -91,6 +92,7 @@ function App() {
         <small>For demo purpouses only (Updated hourly)</small>
         <img src={"https://strapi.senseinode.com/uploads/Frame_bbcbed197b.png"} className="App-logo" alt="logo" />
         <table className="tablePrice">
+          <tbody>
           <tr>
             <td >Dollar blue price </td>
             <td>Eth usd price </td>
@@ -99,6 +101,7 @@ function App() {
             <td> { (parseInt(priceDolar.toString()) / 100).toFixed(2)  }</td>
             <td> { (parseInt(priceEth.toString()) / 100).toFixed(2)  }</td>
           </tr>
+          </tbody>
         </table>
         <p>Date Dolar : { new Date(parseInt(lasttimestampDolar.toString()) * 1000).toString()   }</p>
         <p>Date Eth   : { new Date(parseInt(lasttimestampEth.toString()) * 1000).toString()   }</p>
