@@ -115,6 +115,11 @@ function App() {
 	return (
 		<div className='App bg-main bg-center bg-contain bg-no-repeat flex flex-col justify-between min-h-screen'>
 			<header className='flex justify-center sm:justify-end p-10'>
+				<img
+					src='https://strapi.senseinode.com/uploads/small_metamask_b00867c98b.png?63653'
+					className='h-8 mr-4'
+					alt='metamsk logo'
+				/>
 				<div className='px-4 border-2 border-brand-blue-primary bg-brand-blue-secondary rounded-lg'>
 					<span className='text-lg  text-brand-blue-primary'>Demo - Updated Hourly!</span>
 				</div>
