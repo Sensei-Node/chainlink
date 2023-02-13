@@ -40,52 +40,76 @@ function App() {
 		console.log('running...');
 		async function getPrice() {
 			try {
-				const { ethereum } = window;
-				if (ethereum) {
-					try {
-						await ethereum.request({
-							method: 'wallet_switchEthereumChain',
-							params: [{ chainId: '0x5' }], // chainId must be in hexadecimal numbers
-						});
-						if (ethereum.chainId != '0x5') {
-							window.location.reload(false);
-						}
-					} catch (error) {
-						console.error(error);
-					}
-					const provider = new ethers.providers.Web3Provider(ethereum);
-					if (ethereum.chainId == '0x5' || ethereum.chainId == '0x05') {
-						const signer = provider.getSigner();
-						// Dolar
-						const contractDolar = new ethers.Contract(
-							process.env.REACT_APP_CONTRACT_ADDRESS_DOLAR,
-							abi,
-							provider
-						);
-						const _priceDolar = await contractDolar.currentPrice();
-						setPriceDolar(_priceDolar);
-						const lastTimestampDolar = await contractDolar.lastTimeStamp();
-						setLasttimestampDolar(lastTimestampDolar);
+				const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_RPC_PROVIDER_URL);
+				// Dolar
+				const contractDolar = new ethers.Contract(
+					process.env.REACT_APP_CONTRACT_ADDRESS_DOLAR,
+					abi,
+					provider
+				);
+				const _priceDolar = await contractDolar.currentPrice();
+				setPriceDolar(_priceDolar);
+				const lastTimestampDolar = await contractDolar.lastTimeStamp();
+				setLasttimestampDolar(lastTimestampDolar);
 
-						// Eth
-						const contractEth = new ethers.Contract(
-							process.env.REACT_APP_CONTRACT_ADDRESS_ETH,
-							abieth,
-							provider
-						);
-						const _priceEth = await contractEth.currentPrice();
-						setPriceEth(_priceEth);
-						const lastTimestampEth = await contractEth.lastTimeStamp();
-						setLasttimestampEth(lastTimestampEth);
-						console.log('ETH' + lastTimestampEth);
-					} else {
-						console.log('Need chain 5, has %o', ethereum.chainId);
-					}
-				} else {
-					alert(
-						'MetaMask is not installed. Please consider installing it: https://metamask.io/download.html'
-					);
-				}
+				// Eth
+				const contractEth = new ethers.Contract(
+					process.env.REACT_APP_CONTRACT_ADDRESS_ETH,
+					abieth,
+					provider
+				);
+				const _priceEth = await contractEth.currentPrice();
+				setPriceEth(_priceEth);
+				const lastTimestampEth = await contractEth.lastTimeStamp();
+				setLasttimestampEth(lastTimestampEth);
+				console.log('ETH' + lastTimestampEth);
+
+				// const { ethereum } = window;
+				// if (ethereum) {
+				// 	try {
+				// 		await ethereum.request({
+				// 			method: 'wallet_switchEthereumChain',
+				// 			params: [{ chainId: '0x5' }], // chainId must be in hexadecimal numbers
+				// 		});
+				// 		if (ethereum.chainId != '0x5') {
+				// 			window.location.reload(false);
+				// 		}
+				// 	} catch (error) {
+				// 		console.error(error);
+				// 	}
+				// 	const provider = new ethers.providers.Web3Provider(ethereum);
+				// 	if (ethereum.chainId == '0x5' || ethereum.chainId == '0x05') {
+				// 		const signer = provider.getSigner();
+				// 		// Dolar
+				// 		const contractDolar = new ethers.Contract(
+				// 			process.env.REACT_APP_CONTRACT_ADDRESS_DOLAR,
+				// 			abi,
+				// 			provider
+				// 		);
+				// 		const _priceDolar = await contractDolar.currentPrice();
+				// 		setPriceDolar(_priceDolar);
+				// 		const lastTimestampDolar = await contractDolar.lastTimeStamp();
+				// 		setLasttimestampDolar(lastTimestampDolar);
+
+				// 		// Eth
+				// 		const contractEth = new ethers.Contract(
+				// 			process.env.REACT_APP_CONTRACT_ADDRESS_ETH,
+				// 			abieth,
+				// 			provider
+				// 		);
+				// 		const _priceEth = await contractEth.currentPrice();
+				// 		setPriceEth(_priceEth);
+				// 		const lastTimestampEth = await contractEth.lastTimeStamp();
+				// 		setLasttimestampEth(lastTimestampEth);
+				// 		console.log('ETH' + lastTimestampEth);
+				// 	} else {
+				// 		console.log('Need chain 5, has %o', ethereum.chainId);
+				// 	}
+				// } else {
+				// 	alert(
+				// 		'MetaMask is not installed. Please consider installing it: https://metamask.io/download.html'
+				// 	);
+				// }
 			} catch (error) {
 				console.log('error', error);
 			}
