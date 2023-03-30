@@ -61,6 +61,7 @@ function App() {
 					provider
 				);
 				const _priceEth = await contractEth.currentPrice();
+				console.log("price"+ _priceEth)
 				setPriceEth(_priceEth);
 				const lastTimestampEth = await contractEth.lastTimeStamp();
 				setLasttimestampEth(lastTimestampEth);

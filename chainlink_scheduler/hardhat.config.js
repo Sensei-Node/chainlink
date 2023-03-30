@@ -13,19 +13,18 @@ task("requestDolar", "Prints an account's balance")
   )
   .addParam("jobId", "The job id. Ex.goerli. f17d5589cf90471ea9dd1e8b4ce59ed8")
   .setAction(async (taskArgs, hre) => {
-    try {
-      const clContract = await hre.ethers.getContractAt(
-        "TestnetConsumerDolar",
-        taskArgs.clientAddress
-      );
-      await clContract.requestDolarBluePrice(
-        taskArgs.operatorAddress,
-        taskArgs.jobId
-      );
-      console.log(`The requestDolarBluePrice was called`);
-    } catch (error) {
-      console.error(error);
-    }
+    try{
+      const clContract = await hre.ethers.getContractAt("TestnetConsumerDolar", taskArgs.clientAddress);
+      console.log("Last price %o", await clContract.currentPrice());
+      const tx = await clContract.requestDolarBluePrice(taskArgs.operatorAddress, taskArgs.jobId);	
+      //await tx.wait(2);
+      console.log("TX %o", tx)
+      console.log(
+        `The requestDolarBluePrice was called`
+      );  
+    }catch(error){
+      console.error(error)
+    }   
   });
 
 task("requestEth", "Prints an account's balance")
