@@ -1,10 +1,18 @@
-# Getting Started with Create React App
+# Dolar and eth price frontend 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a demo to show how to get data from an oracle
 
-## Available Scripts
+## Download dependencies
 
-In the project directory, you can run:
+`npm i` 
+
+## Environment variables 
+
+```bash
+cp env.default .env
+```
+And set the address of the clients contracts.
+You have this contract in [chainlink_scheduler](https://github.com/Sensei-Node/chainlink/tree/main/chainlink_scheduler)
 
 ### `npm start`
 
@@ -14,10 +22,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -29,42 +33,23 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Funding contracts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+You have to fund the following contracts with [LINK](https://docs.chain.link/resources/link-token-contracts/):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### LINK 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Clients contract
+- Operator just minimum (0.5)
+- Node address
 
-## Learn More
+### Goerli 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Owner (the address who deplpoy the contract) to call the clients
+- Node address (The node address is calling when a request is fullfilled)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**The operator address receives the fees in LINK from every request**
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
