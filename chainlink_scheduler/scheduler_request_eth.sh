@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sleep 300
+sleep 300
 HERE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" 
 
 set -a
