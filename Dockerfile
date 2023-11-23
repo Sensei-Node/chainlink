@@ -1,7 +1,7 @@
-FROM smartcontract/chainlink:1.11.0-root
+FROM smartcontract/chainlink:2.1.1-root
 
 # Create the chainlink node root path
-RUN mkdir /home/chainlink
+RUN mkdir -p /home/chainlink
 
 ENV API_USER_EMAIL $API_USER_EMAIL
 ENV API_USER_PASSWORD $API_USER_PASSWORD

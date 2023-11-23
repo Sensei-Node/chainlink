@@ -3,7 +3,7 @@ version: "3"
 services: 
   postgres:
     image: postgres:${POSTGRES_VERSION}
-    container_name: compose_cl_postgres
+    container_name: postgres
     ports:
       - 5432:5432
     env_file: 
@@ -12,24 +12,20 @@ services:
       - db-data:/var/lib/postgresql/data
 
   chainlink:
-    build: .
-    container_name: compose_chainlink
-    #user: chainlink:14933
-    env_file:
-      - .env
-    command: local node -p /home/chainlink/.password -a /home/chainlink/.api
-    #command: "-f /dev/null"
-    #entrypoint: /usr/bin/tail
-    #tty: true
-    #restart: on-failure
-    ports: 
-      - 6688:6688
-    links:
-      - postgres
-    depends_on: 
-      - postgres
+    image: 'smartcontract/chainlink:2.5.0'
+    platform: linux/x86_64
+    container_name: chainlink-mumbai
     volumes:
-      - ./chainlink_data:/home/chainlink
+      - ./config:/chainlink
+    stdin_open: true
+    tty: true
+    ports:
+      - '6688:6688'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    command: 'node -config /chainlink/config.toml -secrets /chainlink/secrets.toml start -a /chainlink/.api -p /chainlink/.password'
+    depends_on:
+      - postgres
 
 volumes: 
   db-data:
