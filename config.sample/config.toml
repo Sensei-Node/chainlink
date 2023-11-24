@@ -1,0 +1,17 @@
+[Log]
+Level = 'warn'
+
+[WebServer]
+AllowOrigins = '*'
+SecureCookies = false
+
+[WebServer.TLS]
+HTTPSPort = 0
+
+[[EVM]]
+ChainID = '12345678'
+
+[[EVM.Nodes]]
+Name = 'name'
+WSURL = 'CHANGE_ME'
+HTTPURL = 'CHANGE_ME'
